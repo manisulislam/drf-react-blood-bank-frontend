@@ -9,7 +9,7 @@ function App() {
      <Router>
       <Routes>
         <Route path="/" element={<Home></Home>}/>
-        <Route path="/sign_up" element={<SignUp></SignUp>}/>
+        <Route path="/signup" element={<SignUp></SignUp>}/>
         <Route path="/login" element={<LogIN></LogIN>}/>
         <Route path="/dashboard" element={<Profile></Profile>}/>
         <Route path="/otp/verify" element={<VerifyEmail></VerifyEmail>}/>
