@@ -36,11 +36,11 @@ const LogIn = () => {
       const res = await axios.post('http://127.0.0.1:8000/api/v1/auth/login/', loginData)
 
       if (res.status === 200) {
-        navigate("/dashboard")
+        
         Swal.fire({
           position: "center",
           icon: "success",
-          title: res.data.message,
+          title: "Login Successful",
           showConfirmButton: false,
           timer: 3000
         });
@@ -50,9 +50,10 @@ const LogIn = () => {
           "names":response.full_name
 
         }
-        localStorage.setItem(JSON.stringify(user))
-        localStorage.setItem(JSON.stringify(response.access_token))
-        localStorage.setItem(JSON.stringify(response.refresh_token))
+        navigate("/dashboard")
+        localStorage.setItem("user",JSON.stringify(user))
+        localStorage.setItem("access",JSON.stringify(response.access_token))
+        localStorage.setItem("refresh",JSON.stringify(response.refresh_token))
         
         setError("")
         setLoginData({
