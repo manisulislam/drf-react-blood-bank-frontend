@@ -4,7 +4,9 @@ import LogIN from "./LogIn"
 import Profile from "./Profile"
 import VerifyEmail from "./VerifyEmail"
 import ForgetPassword from "./ForgetPassword"
-
+import About from "./About"
+import Contact from "./Contact"
+import Blog from "./Blog"
 
 export {
     Home,
@@ -12,5 +14,9 @@ export {
     LogIN,
     Profile,
     VerifyEmail,
-    ForgetPassword
+    ForgetPassword,
+    About,
+    Contact,
+    Blog
+
 }
