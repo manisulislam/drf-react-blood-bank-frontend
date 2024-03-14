@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Home, SignUp, LogIN, Profile, VerifyEmail, ForgetPassword, About, Contact,Blog } from "./components/index"
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/forget_password" element={<ForgetPassword></ForgetPassword>} />
           <Route path="/Blog" element={<Blog></Blog>} />
         </Routes>
+        <Footer></Footer>
       </Router>
     </>
   )
