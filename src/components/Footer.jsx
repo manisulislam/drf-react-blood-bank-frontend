@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import image from "../assets/images.png"
+import { Facebook, Linkedin, Youtube} from 'lucide-react';
+
 
 const Footer = () => {
   
@@ -27,14 +29,20 @@ const Footer = () => {
 
             {/* Third Column */}
             <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 px-4 mb-8">
-
-              <ul className="text-white">
-                <li>
-                  <Link>About</Link>
-                </li>
-                <li><Link>About</Link></li>
-                <li><Link>About</Link></li>
-              </ul>
+            <div className="flex space-x-12 py-18 justify-center align-center">
+              <a href="#">
+                <Linkedin color="white"/>
+                
+              </a>
+              <a href="#">
+                <Facebook color="white"/> 
+                
+              </a>
+              <a href="#">
+                <Youtube color="white"/>
+                
+              </a>
+            </div>
             </div>
           </div>
         </div>
