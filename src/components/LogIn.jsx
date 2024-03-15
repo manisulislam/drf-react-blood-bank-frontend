@@ -9,7 +9,7 @@ const LogIn = () => {
     email:"",
     password:""
   })
-
+ const [isLoading, setIsloading]=useState(false)
   const handleChange=(e)=>{
     e.preventDefault()
     setLoginData({
@@ -33,8 +33,10 @@ const LogIn = () => {
 
     }
     else {
+      setIsloading(true)
       const res = await axios.post('http://127.0.0.1:8000/api/v1/auth/login/', loginData)
-
+      const response=res.data
+      setIsloading(false)
       if (res.status === 200) {
         
         Swal.fire({
@@ -44,7 +46,7 @@ const LogIn = () => {
           showConfirmButton: false,
           timer: 3000
         });
-        const response=res.data
+        
         const user={
           "email":response.email,
           "names":response.full_name
@@ -73,6 +75,11 @@ const LogIn = () => {
           <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
 
           <form onSubmit={handleSubmit} >
+          {isLoading && (
+            <div className="flex items-center justify-center h-screen">
+              <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-gray-900"></div>
+            </div>
+          )}
 
             <div className="mb-4">
 
