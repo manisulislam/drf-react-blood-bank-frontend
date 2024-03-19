@@ -1,9 +1,24 @@
 import HeroVideo from "./HeroVideo"
 import image1 from "../assets/health_screen.jpg"
-
-
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+// http://127.0.0.1:8000/api/v1/donor_list/
 
 const Home = () => {
+  const [donor, setDonor] = useState([])
+  
+  useEffect(() => {
+    axios.get(' http://127.0.0.1:8000/api/v1/donor_list/')
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response.data)
+          setDonor(response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching blog data:', error);
+      });
+  }, []);
   return (
     <>
       <HeroVideo></HeroVideo>
@@ -47,23 +62,42 @@ const Home = () => {
 
       <section >
         <div className="my-8 bg-blue-300 p-12">
-        <h2 className="text-1xl font-semibold py-4">Blood Donation Tips</h2>
-        <p>
-          If you plan to give blood, follow these steps:
-          <br />
-          <br />
+          <h2 className="text-1xl font-semibold py-4">Blood Donation Tips</h2>
+          <p>
+            If you plan to give blood, follow these steps:
+            <br />
+            <br />
 
-          <span className="font-bold">Drink plenty of water.</span> Staying hydrated makes it easier to find your veins and prevents you from becoming light-headed after donating, Vossoughi says.
-          <br />
-          <br />
-          <span className="font-bold">Eat well beforehand.</span> Don’t skip breakfast, and be sure to eat snacks offered to you. “These things will help you tolerate the donation well and feel like yourself the rest of the day,” she says.
-          <br />
-          <br />
-          <span className="font-semibold">Exercise before donating blood, not afterward.</span> It’s OK to go to the gym before you donate blood but not so wise afterward. “We don’t want people getting dizzy,” Vossoughi says. “You’ve basically done your workout for the day once you’ve donated blood.”
-          <br />
-          <br />
-          <span className="font-semibold">Take iron tablets.</span> The American Red Cross recommends that individuals who donate blood frequently take an iron supplement or a multivitamin with iron. “More and more, we’re recommending that teenage donors in particular take iron, because it’s been shown that teenage donors may become iron deficient after blood donation,” DeSimone says.</p>
+            <span className="font-bold">Drink plenty of water.</span> Staying hydrated makes it easier to find your veins and prevents you from becoming light-headed after donating, Vossoughi says.
+            <br />
+            <br />
+            <span className="font-bold">Eat well beforehand.</span> Don’t skip breakfast, and be sure to eat snacks offered to you. “These things will help you tolerate the donation well and feel like yourself the rest of the day,” she says.
+            <br />
+            <br />
+            <span className="font-semibold">Exercise before donating blood, not afterward.</span> It’s OK to go to the gym before you donate blood but not so wise afterward. “We don’t want people getting dizzy,” Vossoughi says. “You’ve basically done your workout for the day once you’ve donated blood.”
+            <br />
+            <br />
+            <span className="font-semibold">Take iron tablets.</span> The American Red Cross recommends that individuals who donate blood frequently take an iron supplement or a multivitamin with iron. “More and more, we’re recommending that teenage donors in particular take iron, because it’s been shown that teenage donors may become iron deficient after blood donation,” DeSimone says.</p>
         </div>
+      </section>
+
+      <section >
+
+        <h1 className="py-8 text-2xl text-red-500 font-semibold text-center">Our All Donor List Below </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 px-12">
+        {donor.map(s => (
+          <div className='my-4' key={s.id}>
+            <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
+              <div className="px-6 py-4">
+                <h2 className="font-bold text-xl mb-2">Donar Name: {s.name}</h2>
+                <p className="text-gray-700 text-base">Donar Blood group: {s.blood_group}</p>
+                <p className="text-gray-700 text-base">Location: {s.location}</p>
+                <p className="text-gray-700 text-base">Phone Number: {s.phone_number}</p>
+              </div>
+              
+            </div>
+          </div>
+        ))}</div>
       </section>
 
     </>
